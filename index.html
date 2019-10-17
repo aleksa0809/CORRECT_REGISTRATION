@@ -7,19 +7,21 @@
 
 <body>
 
-    <form action="">
-        <input type="text" name="username" id="username" value="" placeholder="enter login" min-length="1" required>
-        <input type="text" name="userpass" id="userpass" value="" placeholder="enter password" min-length="1" required>
-        <button type="submit" id="login-btn">enter</button>
-    </form>
 
-    <div id="logged" style="display: none;">
-        <h1> ENJOY</h1>
-    </div>
-    <div id="fail" style="display: none;">
-        <h1>failed</h1>
+    <div id="login">
+        <input id="username" type="text">
+        <input id="password" type="password">
+        <button id="buttonLogin">Login</button>
+
     </div>
 
+
+
+    <div id="logged">
+        <h1>logged in</h1>
+        <button id="buttonLogout">Logout</button>
+
+    </div>
     <script src="scripts.js"></script>
 </body>
 

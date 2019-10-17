@@ -1,39 +1,62 @@
-var name = "test";
-var password = "1234";
+let name = 'test';
+let pass = '1234';
 
-function ready() {
-	
-	var logged = document.getElementById("logged");
-	var fail = document.getElementById("fail");
 
-	var lName = localStorage.getItem("name");
-	var lPass = localStorage.getItem("password");
-	console.log(lName,lPass);
-	if(name == lName && password == lPass){
-		logged.style.display = 'block';
-	}
+//how to hide the block
+let login = document.getElementById("login");
+let logged = document.getElementById("logged");
 
-	var btn = document.getElementById("login-btn");	
-	btn.addEventListener("click", function(event){
-		event.preventDefault();		
-		var username = document.getElementById("username").value;
-		var userpass = document.getElementById("userpass").value;
-		if(username == '' || userpass == ''){
-			alert('empty');
-		}else{
-			if(name == username && password == userpass){
-				localStorage.setItem("name", username);
-				localStorage.setItem("password", userpass);
-				logged.style.display = 'block';
-				fail.style.display = 'none';
-			}
-			else if(name != username || password != userpass){
-				fail.style.display = 'block';
-			}else{
-				return false;
-			}
-		}		
-	});		
+
+let username = document.getElementById("username");
+let password = document.getElementById("password");
+
+let errorMessage = document.getElementById("errorMessage");
+
+
+
+let buttonLogin = document.getElementById("buttonLogin");
+buttonLogin.addEventListener('click', log_in);
+
+let buttonLogout = document.getElementById("buttonLogout");
+buttonLogout.addEventListener('click', logout);
+
+
+let currentUser = null;
+currentUser = localStorage.getItem("currentUser");
+/*if (currentUser) {
+    login.style.display = 'none';
+
+} else {
+    logged.style.display = 'none';
+}*/
+logged.style.display = 'none';
+
+function log_in() {
+
+    if (name == username.value && pass == password.value) {
+        currentUser = name;
+        localStorage.setItem('currentUser', name);
+        login.style.display = 'none';
+        logged.style.display = 'block'; // pokazivaetsa
+    } else {
+        showErrorMessage();
+
+    }
 }
 
-document.addEventListener("DOMContentLoaded", ready);
+function showErrorMessage() {
+
+    alert('error');
+}
+
+
+function logout() {
+
+    login.style.display = 'block';
+    logged.style.display = 'none';
+
+    currentUser = null;
+    localStorage.removeItem("currentUser");
+    username.value = "";
+    password.value = "";
+}
